@@ -1,0 +1,120 @@
+@import "./utils/mixins";
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+:root {
+  --main-font: 'Julius Sans One', sans-serif;
+  --second-font: 'Lato', sans-serif;
+  --black: #1c1521;
+  --red: #b32239;
+  --red-trans: #b3223973;
+  --white: #f2ebf4;
+  --yellow: #fce869;
+}
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--second-font);
+  color: white;
+  background-color: var(--black);
+}
+input,
+input:active,
+input:visited,
+input:focus,
+button,
+button:active,
+button:visited 
+button:focus {
+  border: none;
+  outline: none;
+}
+
+input{
+  background-color: transparent;
+  color: var(--white);
+  border-bottom: 2px solid var(--red);
+  padding: 8px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  
+  &:active, &:focus{
+    border-bottom: 2px solid var(--white);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+
+
+.btn--main,
+.btn--second {
+  cursor: pointer;
+  outline: none;
+  transition: 200ms;
+  padding: 0 45px;
+
+  &:active{
+    transform: scale(0.9);
+  }
+}
+
+.btn--main {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 8px 0;
+
+  &-big{
+    @extend .btn--main;
+    height: 40px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-top: 24px;
+    width: 100%;
+  }
+}
+
+.btn--second {
+  background-color: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+
+  &-small{
+    @extend .btn--second;
+    height: 40px;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 24px;
+    width: 200px;
+
+    span{
+      margin-left: 8px;
+    }
+
+    &:hover{
+      background-color: var(--red);
+      color: white;
+      border: none;
+    }
+    
+    &:active{
+      background-color: var(--red);
+      color: white;
+      border: none;  
+    }
+  }
+
+}
+
+.btn--main:active {
+  transform: scale(0.9);
+}

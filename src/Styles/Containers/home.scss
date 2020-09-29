@@ -1,0 +1,45 @@
+@import '../utils/mixins';
+@import '../utils/animations.scss';
+
+#Home {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  @include center;
+}
+.welcome,
+.name,
+.to {
+  h1 {
+    transform: translateY(100%);
+    animation-name: slide-bottom-top;
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0, 1.38, 0.58, 1);
+  }
+}
+
+.welcome {
+  h1 {
+    animation-delay: 500ms;
+  }
+}
+
+.name {
+  margin-top: -24px;
+  font-size: 5rem;
+  color: var(--red);
+  h1 {
+    animation-delay: 800ms;
+  }
+}
+
+.to {
+  margin-top: -16px;
+  font-size: 1.6rem;
+  h1 {
+    animation-delay: 1000ms;
+  }
+}
+// .welcome
+

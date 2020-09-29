@@ -1,0 +1,82 @@
+@import "../utils/mixins";
+@import "../utils/animations";
+
+#Landign {
+  height: 100vh;
+  background-image: url(../../images/background.jpg);
+
+  .about {
+    height: 100%;
+    display: flex;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+
+    .text {
+      width: 50%;
+      @include center;
+      flex-direction: column;
+      text-align: center;
+
+      h1{
+        font-size: 3rem;
+        line-height: 1.2em;
+
+        span{
+          font-size: 10rem;
+          line-height: 5rem;
+          color: var(--red);
+        }
+      }
+      a {
+        width: 50%;
+      }
+    }
+
+    #landing-img {
+      z-index: 2;
+      width: 50%;
+      animation: 1s appear;
+
+      img {
+        height: 120%;
+        margin-left: 10%;
+      }
+    }
+
+    .circle {
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background-color: var(--red-trans);
+      position: fixed;
+      bottom: -10vw;
+      right: -14vh;
+    }
+
+    .social {      
+      width: 25%;
+      font-size: 28px;
+      @include center_between;
+      position: absolute;
+      bottom: 32px;
+      cursor: pointer;
+      
+      &>svg:hover{
+        transition: 300ms;
+        transform: scale(1.5);
+        color: var(--red);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  #Landing{
+    .circle {
+      width: 1000px;
+      height: 1000px;
+    }
+  }
+}

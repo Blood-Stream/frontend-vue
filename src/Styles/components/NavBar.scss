@@ -1,0 +1,41 @@
+@import '../utils/mixins';
+@import '../styles.scss';
+
+#navbar{
+  width: 100vw;
+  max-height: 80px;
+  height: 5vw;
+  display: flex;
+  position: absolute;
+  top: 0;
+  padding: 0px 30px;
+  box-sizing: border-box;
+  z-index: 100;
+  @include center-between;
+  
+  &.navBar{
+    position: relative;
+  }
+
+  .logo{
+    font-family: var(--main-font);
+  }
+
+  ul{
+    padding: 0 40px;
+    min-width: 224px;
+    list-style: none;
+    @include center-between;
+
+    li{
+      cursor: pointer;
+      font-family: var(--main-font);
+      & a:hover{
+        color: var(--red);
+        font-weight: 900;
+        font-size: 1.2rem;
+        transition: 300ms;
+      }
+    }
+  }
+}
