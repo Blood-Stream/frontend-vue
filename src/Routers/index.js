@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // pages
 import Home from '../Pages/Home.vue'
+import Landing from '../Pages/Landing.vue'
 
 const proof = false
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/landing',
+    name: 'Landing',
+    component: Landing
   },
   {
     path: '/home',
@@ -16,13 +17,21 @@ const routes = [
     component: Home
   },
   {
+    path: '/sesion/:typeform',
+    name: 'Sesion',
+    props: true,
+    component: () => import(/* webpackChunkName: "sesions" */ '@/Pages/Sesion.vue')
+  },
+  {
     path: '/',
     redirect: to => {
-      let path = 'home'
+      let path = '/home'
       if (proof) {
-        path = 'landing'
+        path = '/landing'
       }
-      return { path: `${path}` }
+      return {
+        path: `${path}`
+      }
     }
   },
   {

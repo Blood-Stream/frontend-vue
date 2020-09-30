@@ -3,7 +3,7 @@
 
 #Landign {
   height: 100vh;
-  background-image: url(../../images/background.jpg);
+  background-image: url(../Assets/images/background.jpg);
 
   .about {
     height: 100%;
@@ -19,11 +19,11 @@
       flex-direction: column;
       text-align: center;
 
-      h1{
+      h1 {
         font-size: 3rem;
         line-height: 1.2em;
 
-        span{
+        span {
           font-size: 10rem;
           line-height: 5rem;
           color: var(--red);
@@ -55,15 +55,15 @@
       right: -14vh;
     }
 
-    .social {      
+    .social {
       width: 25%;
       font-size: 28px;
       @include center_between;
       position: absolute;
       bottom: 32px;
       cursor: pointer;
-      
-      &>svg:hover{
+
+      & > svg:hover {
         transition: 300ms;
         transform: scale(1.5);
         color: var(--red);
@@ -73,7 +73,7 @@
 }
 
 @media screen and (min-width: 640px) {
-  #Landing{
+  #Landing {
     .circle {
       width: 1000px;
       height: 1000px;

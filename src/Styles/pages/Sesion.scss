@@ -1,14 +1,14 @@
-@import '../utils/mixins';
-@import '../utils/animations';
+@import "../utils/mixins";
+@import "../utils/animations";
 
-#Sesion{
-  background-image: url(../../images/background.jpg);
+#Sesion {
+  background-image: url(../Assets/images/background.jpg);
   overflow: hidden;
   height: 100vh;
   position: relative;
 }
 
-.sesion__title{
+.sesion__title {
   width: 100%;
   text-align: center;
   margin-bottom: 24px;
@@ -16,33 +16,32 @@
   font-size: 3rem;
 }
 
-.sesionWrap{
+.sesionWrap {
   @include center;
   height: 90%;
-  
 }
 
-.contentSesion{
+.contentSesion {
   padding: 5%;
   width: 50%;
 
-  .signupRrss{
+  .signupRrss {
     @include center;
     text-align: center;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
     margin-bottom: 48px;
 
-    button{
+    button {
       margin: 8px;
     }
   }
 }
 
-.form{
+.form {
   width: 80%;
   margin: 0 auto;
 
-  input{
+  input {
     margin-bottom: 16px;
     font-family: var(--main-font);
     font-size: 1.2rem;
@@ -57,15 +56,14 @@
   animation-fill-mode: forwards;
   opacity: 0;
 
-  
-  img{
+  img {
     height: 120%;
     margin-top: -48px;
     margin-left: 4vw;
   }
 }
 
-.circleBackground{
+.circleBackground {
   width: 800px;
   height: 800px;
   background-color: var(--red-trans);

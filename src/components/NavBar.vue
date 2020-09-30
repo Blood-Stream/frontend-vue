@@ -19,9 +19,9 @@ export default {
   props: {
     login: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>
 
