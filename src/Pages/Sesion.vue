@@ -25,17 +25,13 @@
             <span>Gmail</span>
           </button>
         </div>
-        <Provider>
-          <!-- <UserContext.Consumer>
-          { ({ activateAuth, dataUser }) =>{ return ( -->
+        <UserProvider>
           <form-sesion
             activateAuth="{activateAuth}"
             dataUser="{dataUser}"
             :typeform="typeform"
           />
-          <!-- ) }}
-        </UserContext.Consumer> -->
-        </Provider>
+        </UserProvider>
       </div>
 
       <div class="circleBackground"></div>
@@ -49,38 +45,41 @@
 
 <script>
 import FormSesion from "@/Components/FormSesion.vue";
-import Provider from "@/Components/Provider.vue";
+// import Provider from "@/Components/Provider.vue";
+// import { userConsumer } from "../context/consumer.js";
+import UserProvider from "../context/Provider.vue";
+
 import {
   faFacebook,
   faTwitter,
   faGithub,
-  faGoogle,
+  faGoogle
 } from "@fortawesome/free-brands-svg-icons";
 
 export default {
   props: {
     typeform: {
       type: String,
-      default: "d",
-    },
+      default: "d"
+    }
   },
   data() {
     return {
       fb: faFacebook,
       twitter: faTwitter,
       git: faGithub,
-      google: faGoogle,
+      google: faGoogle
     };
   },
   components: {
     FormSesion,
-    Provider,
+    UserProvider
   },
   computed: {
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
-    },
-  },
+    }
+  }
 };
 </script>
 
