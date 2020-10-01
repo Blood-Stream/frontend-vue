@@ -25,13 +25,11 @@
             <span>Gmail</span>
           </button>
         </div>
-        <UserProvider>
-          <form-sesion
-            activateAuth="{activateAuth}"
-            dataUser="{dataUser}"
-            :typeform="typeform"
-          />
-        </UserProvider>
+        <form-sesion
+          activateAuth="{activateAuth}"
+          dataUser="{dataUser}"
+          :typeform="typeform"
+        />
       </div>
 
       <div class="circleBackground"></div>
@@ -45,9 +43,6 @@
 
 <script>
 import FormSesion from "@/Components/FormSesion.vue";
-// import Provider from "@/Components/Provider.vue";
-// import { userConsumer } from "../context/consumer.js";
-import UserProvider from "../context/Provider.vue";
 
 import {
   faFacebook,
@@ -72,8 +67,7 @@ export default {
     };
   },
   components: {
-    FormSesion,
-    UserProvider
+    FormSesion
   },
   computed: {
     typeOfForm() {
