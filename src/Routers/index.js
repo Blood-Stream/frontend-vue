@@ -3,7 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../Pages/Home.vue'
 import Landing from '../Pages/Landing.vue'
 
-const proof = true
+const proof = false
+
+// const routerOptions
 
 const routes = [
   {

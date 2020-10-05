@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import Vuex from 'vuex'
+import { store } from './store'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './Routers'
@@ -9,5 +9,5 @@ import NavBar from "@/Components/NavBar.vue";
 const app = createApp(App)
 app.component('Nav-bar', NavBar)
 app.component('font-awesome-icon', FontAwesomeIcon)
-app.use(Vuex)
+app.use(store)
 app.use(router).mount('#app')

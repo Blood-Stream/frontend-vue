@@ -2,7 +2,6 @@
   <!-- <div> -->
   <div class="gekki">
     <form className="form" @submit.prevent="register">
-      <h1>{{ nameuser }} f</h1>
       <input
         required
         type="email"
@@ -30,37 +29,40 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   props: {
     typeform: {
       type: String,
-      default: "login"
+      default: "login",
     },
     namee: {
-      type: Function
-    }
+      type: Function,
+    },
   },
   data() {
     return {
       userData: {
         email: "",
         nickname: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   computed: {
+    ...mapState("userData", ["nameuser"]),
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
-    }
+    },
   },
   methods: {
+    ...mapActions("userData", ["login"]),
     register() {
       console.log(this.userData);
       this.$emit("data-user", this.userData);
 
       this.$setData.$emit("set-data", this.userData);
-    }
-  }
+    },
+  },
 };
 </script>
