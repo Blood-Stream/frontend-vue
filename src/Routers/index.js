@@ -3,9 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../Pages/Home.vue'
 import Landing from '../Pages/Landing.vue'
 
-const proof = false
-
-// const routerOptions
+const sesion = Boolean(sessionStorage.getItem('UserSesion'))
 
 const routes = [
   {
@@ -19,6 +17,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/user',
+    name: 'user',
+    component: () => import(/* webpackChunkName: 'profile' */ '@/Pages/EditProfile.vue')
+  },
+  {
     path: '/sesion/:typeform',
     name: 'Sesion',
     props: true,
@@ -27,9 +30,11 @@ const routes = [
   {
     path: '/',
     redirect: to => {
-      let path = '/home'
-      if (proof) {
-        path = '/landing'
+      let path = '/landing'
+
+      console.log(sesion);
+      if (sesion) {
+        path = '/home'
       }
       return {
         path: `${path}`

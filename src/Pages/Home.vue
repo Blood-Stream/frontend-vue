@@ -30,9 +30,15 @@
           <p>New Release</p>
         </div>
       </div>
-      <!----------------Cards -->
-      <div class="filters">
+      <!----------------filters -->
+      <div id="Filters" class="filters">
         <select id="" name="New-release">
+          <option value="">New release</option>
+          <option value="">New release</option>
+          <option value="">New release</option>
+          <option value="">New release</option>
+          <option value="">New release</option>
+          <option value="">New release</option>
           <option value="">New release</option>
         </select>
         <select id="" name="Top-10">
@@ -51,21 +57,45 @@
           <option value="gurdados">Guardados</option>
         </select>
       </div>
-      <!----------------filters -->
+      <!----------------Cards -->
       <div class="cards">
         <div class="sugerencias">
-          <Card />
+          <h1>Sugerencias</h1>
+          <p @click.prevent="leftModal">left</p>
+          <p @click.prevent="rightModal">Rigth</p>
+          <div id="$gridCards" class="gridCards">
+            <Card @click.prevent="getDataGame(id)" />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
         </div>
         <div class="sugerencias">
-          <Card />
+          <h1>Sugerencias</h1>
+          <div id="$gridCards2" class="gridCards">
+            <Card @click.prevent="getDataGame(id)" />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
         </div>
       </div>
     </div>
+    <ModalGames v-show="modal" />
   </div>
 </template>
 
 <script>
-import NavBarDash from "../Components/NavBarDash";
+import NavBarDash from "../Components/NavBarDash.vue";
+import ModalGames from "@/Components/ModalGames.vue";
+import { mapActions, mapState } from "vuex";
+
 import Card from "../Components/Card";
 
 export default {
@@ -73,11 +103,32 @@ export default {
     infoUser: {
       type: String,
       default: "Andres",
+      id: 1,
+    },
+  },
+  data() {
+    return {
+      modalGames: true,
+    };
+  },
+  computed: {
+    ...mapState("game", ["game", "modal"]),
+  },
+  methods: {
+    ...mapActions("game", ["getDataGame"]),
+    leftModal() {
+      window.$gridCards.scrollLeft += 820;
+      console.log(window.$gridCards.scrollLeft);
+    },
+    rightModal() {
+      window.$gridCards.scrollLeft -= 820;
+      console.log(window.$gridCards.scrollLeft);
     },
   },
   components: {
     NavBarDash,
     Card,
+    ModalGames,
   },
 };
 </script>

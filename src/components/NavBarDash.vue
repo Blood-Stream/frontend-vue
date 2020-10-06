@@ -1,26 +1,32 @@
 <template>
   <div id="navbar" v-bind:class="{ NavBar: login }">
+    <router-link to="/sesion/login">
+      <font-awesome-icon :icon="menu" color="var(--white)" />
+    </router-link>
     <router-link to="/">
       <h2 class="logo">Blood-Stream</h2>
     </router-link>
-    <ul>
-      <li>
-        <router-link to="/sesion/login"> Login </router-link>
-      </li>
-      <li>
-        <router-link to="/sesion/signup"> Signup </router-link>
-      </li>
-    </ul>
+    <router-link to="/user" class="profile-border">
+      <div class="profile">
+        <img src="@/Assets/images/profile-real.jpg" alt="" />
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 export default {
   props: {
     login: {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      menu: faBars,
+    };
   },
 };
 </script>

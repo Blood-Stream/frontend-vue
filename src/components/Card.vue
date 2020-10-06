@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div id="Card">
     <!--------------- image -->
     <figure>
       <img src="@/Assets/images/games/altos.png" alt="" />
     </figure>
     <!--------------- title -->
-    <h3></h3>
+    <h3>{{ nameGame }}</h3>
     <!--------------- interaction -->
     <div class="interaction">
       <!------- stars -->
@@ -17,11 +17,11 @@
         <font-awesome-icon :icon="starHalf" color="var(--yellow)" />
       </div>
       <!------- like -->
-      <font-awesome-icon :icon="Heart" color="var(--red)" />
 
+      <font-awesome-icon :icon="Heart" color="var(--red)" />
       <!------- game -->
+      <font-awesome-icon :icon="game" color="var(--white)" />
     </div>
-    {{ key }}
   </div>
 </template>
 
@@ -30,19 +30,27 @@ import {
   faStar,
   faStarHalfAlt,
   faHeart,
+  faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default {
+  props: {
+    nameGame: {
+      type: String,
+      default: "XCom 2",
+    },
+  },
   data() {
     return {
-      key: "card",
       star: faStar,
       starHalf: faStarHalfAlt,
       Heart: faHeart,
+      game: faGamepad,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/components/card.scss";
 </style>

@@ -1,0 +1,10 @@
+@import "../utils/mixins";
+
+#EditProfile {
+  .profile {
+    width: 100vw;
+    height: 100vh;
+    @include center;
+    flex-direction: column;
+  }
+}

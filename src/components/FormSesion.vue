@@ -1,13 +1,13 @@
 <template>
   <!-- <div> -->
   <div class="gekki">
-    <form className="form" @submit.prevent="register">
+    <form class="form" name="myform" @submit.prevent="sendData">
       <input
         required
         type="email"
         placeholder="Email"
         v-model="userData.email"
-        v-show="typeform == 'signup'"
+        v-if="typeform == 'signup'"
       />
       <input
         required
@@ -21,7 +21,7 @@
         placeholder="Password"
         v-model="userData.password"
       />
-      <button className="btn--main-big">
+      <button class="btn--main-big">
         {{ typeOfForm }}
       </button>
     </form>
@@ -29,39 +29,34 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
 export default {
   props: {
     typeform: {
       type: String,
       default: "login",
     },
-    namee: {
-      type: Function,
-    },
   },
   data() {
     return {
       userData: {
         email: "",
-        nickname: "",
-        password: "",
+        nickname: "andres",
+        password: "123lkajsldkfj",
       },
     };
   },
   computed: {
-    ...mapState("userData", ["nameuser"]),
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
     },
   },
   methods: {
-    ...mapActions("userData", ["login"]),
-    register() {
-      console.log(this.userData);
-      this.$emit("data-user", this.userData);
-
-      this.$setData.$emit("set-data", this.userData);
+    sendData() {
+      if (this.typeform === "login") {
+        this.$store.dispatch("userData/login", this.userData);
+      } else {
+        this.$store.dispatch("userData/signup", this.userData);
+      }
     },
   },
 };

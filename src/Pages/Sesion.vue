@@ -25,11 +25,7 @@
             <span>Gmail</span>
           </button>
         </div>
-        <form-sesion
-          activateAuth="{activateAuth}"
-          dataUser="{dataUser}"
-          :typeform="typeform"
-        />
+        <form-sesion :typeform="typeform" />
       </div>
 
       <div class="circleBackground"></div>
@@ -48,32 +44,32 @@ import {
   faFacebook,
   faTwitter,
   faGithub,
-  faGoogle
+  faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
 
 export default {
   props: {
     typeform: {
       type: String,
-      default: "d"
-    }
+      default: "d",
+    },
   },
   data() {
     return {
       fb: faFacebook,
       twitter: faTwitter,
       git: faGithub,
-      google: faGoogle
+      google: faGoogle,
     };
   },
   components: {
-    FormSesion
+    FormSesion,
   },
   computed: {
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
-    }
-  }
+    },
+  },
 };
 </script>
 

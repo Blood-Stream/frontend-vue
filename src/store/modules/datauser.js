@@ -1,17 +1,27 @@
+import router from '../../Routers'
 export default {
   namespaced: true,
   state: {
-    nameuser: 'andres'
+    nameuser: 'Andres',
+    Nickname: 'circuandante',
+    jwt: '',
+    userData: {}
   },
-  mutatios: {
-    increment(state) {
-      state.count++
+
+  mutations: {
+    // ----------- set data user
+    dataUser(state, userdata) {
+      state.userData = userdata
     },
-    dataUser(state) {
-      console.log(state);
+
+    // -------------- set jwt
+    setJwt(state, jwt) {
+      state.jwt = jwt
     }
   },
+
   actions: {
+    // ----------------------get user
     async getUser({
       commit
     }, user) {
@@ -28,97 +38,87 @@ export default {
         await fetch(url, myInit)
           .then(response => response.json())
           .then(data => {
-            commit('dataUser', data.body.Nickname)
-            history.push('/home')
+            if (data.status === 200) {
+              commit('dataUser', data.body)
+              router.push({ path: '/home' })
+            }
           });
       } catch (error) {
         console.error(error);
       }
     },
 
+    // -------------------login
     async login({
       commit,
-      typeform
+      dispatch
     }, userdata) {
-      let url = `http://dry-mesa-48732.herokuapp.com/user/`
-      let data = {}
-      const Method = 'POST'
-      let myInit = {}
+      const url = `http://dry-mesa-48732.herokuapp.com/user/login`
 
-      switch (typeform) {
-        case 'login':
+      const data = {
+        nickname: userdata.nickname,
+        password: userdata.password,
+      };
 
-          data = {
-            nickname: userdata.nickname,
-            password: userdata.password,
-          };
-
-          url += "login";
-
-          myInit = {
-            method: `${Method}`,
-            body: JSON.stringify(data),
-            headers: {
-              "Content-Type": "application/json",
-            },
-            mode: "cors",
-          };
-
-          try {
-            await fetch(url, myInit)
-              .then((response) => response.json())
-              .then((data) => {
-                commit('activateAuth', data.body)
-                // commit('getNick', userdata.nickname)
-                this.getNick(userdata.nickname)
-              });
-          } catch (error) {
-            console.error(error);
-          }
-
-          break;
-
-        case 'signup':
-          data = {
-            nickname: userdata.nickname,
-            country: "-",
-            postal_Code: "-",
-            birthday: "2020-05-05",
-            status: true,
-            platform: "-",
-            email: userdata.email,
-            phone: "-",
-            rol: "-",
-            level: 1,
-            password: userdata.password
-          }
-
-          myInit = {
-            method: `${Method}`,
-            body: JSON.stringify(data),
-            headers: {
-              "Content-Type": "application/json",
-            },
-            mode: "cors",
-          };
-
-          try {
-            await fetch(url, myInit)
-              .then(response => response.json())
-              .then(data => {
-                commit('dataUser', data.body)
-
-                history.push('/sesion/login')
-              });
-          } catch (error) {
-            console.error(error);
-          }
-
-          break;
-
-        default:
-          return false
+      const myInit = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      };
+      try {
+        await fetch(url, myInit)
+          .then((response) => response.json())
+          .then(async (data) => {
+            if (data.status === 200) {
+              commit('setJwt', data.body)
+              dispatch('getUser', userdata.nickname)
+            }
+          });
+      } catch (error) {
+        console.error(error);
       }
-    }
+    },
+
+    // ----------------------- signup
+    async signup({
+      commit
+    }, userdata) {
+      const url = `http://dry-mesa-48732.herokuapp.com/user/`
+      const data = {
+        nickname: userdata.nickname,
+        country: "-",
+        postal_Code: "-",
+        birthday: "2020-05-05",
+        status: true,
+        platform: "-",
+        email: userdata.email,
+        phone: "-",
+        rol: "-",
+        level: 1,
+        password: userdata.password
+      }
+
+      const myInit = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      };
+
+      try {
+        await fetch(url, myInit)
+          .then(response => response.json())
+          .then(data => {
+            commit('dataUser', data.body)
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
   }
 }
