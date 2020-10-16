@@ -6,12 +6,12 @@
   background-image: url(../Assets/images/background.jpg);
 
   .about {
-    height: 100%;
+    position: relative;
     display: flex;
+    height: 100%;
     padding: 16px;
     box-sizing: border-box;
     overflow: hidden;
-    position: relative;
 
     .text {
       width: 50%;
@@ -38,6 +38,7 @@
       z-index: 2;
       width: 50%;
       animation: 1s appear;
+      position: relative;
 
       img {
         height: 120%;
@@ -46,13 +47,13 @@
     }
 
     .circle {
+      position: fixed;
+      bottom: -10vw;
+      right: -14vh;
       width: 800px;
       height: 800px;
       border-radius: 50%;
       background-color: var(--red-trans);
-      position: fixed;
-      bottom: -10vw;
-      right: -14vh;
     }
 
     .social {
@@ -72,11 +73,62 @@
   }
 }
 
-@media screen and (min-width: 640px) {
-  #Landing {
-    .circle {
-      width: 1000px;
-      height: 1000px;
+@media screen and (max-width: 620px) {
+  #Landign {
+    width: 100vw;
+    height: 110vh;
+    background-image: none;
+
+    .about {
+      display: block;
+      z-index: 10;
+      width: 100%;
+      // height: auto;
+
+      .text {
+        width: 100%;
+        min-height: 400px;
+
+        h1 {
+          line-height: 1em;
+          font-size: 2rem;
+
+          span {
+            font-size: 7rem;
+          }
+        }
+      }
+
+      .social {
+        position: relative;
+        bottom: initial;
+        margin-top: 16px;
+        width: 70%;
+      }
+
+      #landing-img {
+        z-index: 4;
+        width: 100%;
+        margin-top: -50px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .circle {
+        position: absolute;
+        bottom: -120px;
+        z-index: 0;
+        width: 500px;
+        height: 500px;
+      }
     }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  #Landign {
+    background-image: none;
   }
 }

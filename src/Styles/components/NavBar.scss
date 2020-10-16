@@ -56,3 +56,14 @@
     }
   }
 }
+
+@media screen and (max-width: 620px) {
+  #navbar {
+    height: 20vh;
+
+    ul {
+      padding: 0;
+      min-width: 128px;
+    }
+  }
+}

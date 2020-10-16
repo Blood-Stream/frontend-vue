@@ -3,9 +3,17 @@ export default {
   state: {
     listGame: {},
     modal: false,
-    game: {
+    gameData: {
       id: 'jkhasgjkhsjhj',
-      name: 'AndresGame'
+      image: 'https://upload.wikimedia.org/wikipedia/en/8/8f/MiddleEarthShadowOfWar.jpg',
+      url: 'http://www.google.com',
+      name: 'Shadowgun war games',
+      released: '20-05-2020',
+      userRaiting: 4.5,
+      age: '+18',
+      description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum dolores repellat porro laudantium ipsum distinctio voluptas, dolorum quod neque.',
+      languages: ['spanish', 'english', 'chinese'],
+      primaryGenre: 'Arcade'
     },
   },
   mutations: {

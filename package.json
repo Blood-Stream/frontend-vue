@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
+    "test:coverage": "vue-cli-service test:unit --coverage",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -13,7 +14,10 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@fortawesome/vue-fontawesome": "^3.0.0-1",
+    "bodymovin": "^4.13.0",
     "core-js": "^3.6.5",
+    "lottie-vuejs": "^0.4.0",
+    "lottie-web": "^5.7.3",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0-0",
     "vue-router": "^4.0.0-0",
@@ -45,5 +49,13 @@
     "extends": [
       ".slintrc.js"
     ]
-  }
+  },
+  "description": "## Project setup ``` yarn install ```",
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

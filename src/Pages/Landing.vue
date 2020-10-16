@@ -2,20 +2,26 @@
   <main id="Landign">
     <Nav-bar />
 
-    <!--  -->
+    <!-- landing -->
     <div class="about">
+
+      <!-- circle -->
+      <div class="circle"></div>
+
       <div class="text">
         <h1>
           Descubre los Juegos <br />quecorren por tus<br />
           <span>venas</span>
         </h1>
 
-        <!--  -->
+        <!-- button singup -->
         <router-link to="/sesion/signup">
-          <button class="btn--main-big">Signup</button>
+          <transition name="fade">
+            <button class="btn--main-big">Signup</button>
+          </transition>
         </router-link>
 
-        <!--  -->
+        <!-- social media -->
         <div class="social">
           <font-awesome-icon :icon="twitter" />
           <font-awesome-icon :icon="fb" />
@@ -23,9 +29,7 @@
         </div>
       </div>
 
-      <div class="circle"></div>
-
-      <!--  -->
+      <!-- img -->
       <figure id="landing-img">
         <img src="@/Assets/images/Nova.png" alt="" />
       </figure>

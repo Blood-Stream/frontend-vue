@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 // pages
 import Home from '../Pages/Home.vue'
 import Landing from '../Pages/Landing.vue'
-
 const sesion = Boolean(sessionStorage.getItem('UserSesion'))
 
 const routes = [
@@ -20,6 +19,11 @@ const routes = [
     path: '/user',
     name: 'user',
     component: () => import(/* webpackChunkName: 'profile' */ '@/Pages/EditProfile.vue')
+  },
+  {
+    path: '/load',
+    name: 'load',
+    component: () => import(/* webpackChunkName: 'load' */ '@/Assets/animations/lotie.vue')
   },
   {
     path: '/sesion/:typeform',

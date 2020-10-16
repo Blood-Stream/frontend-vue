@@ -7,4 +7,21 @@
     @include center;
     flex-direction: column;
   }
+
+  img {
+    border-radius: 50%;
+  }
+
+  .data {
+    width: 300px;
+
+    &::before {
+      color: white;
+    }
+    input {
+      text-align: left;
+    }
+    .nickname {
+    }
+  }
 }

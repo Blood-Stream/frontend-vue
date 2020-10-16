@@ -6,6 +6,7 @@
   --main-font: "Julius Sans One", sans-serif;
   --second-font: "Lato", sans-serif;
   --black: #1c1521;
+  --black-trans: #1c152173;
   --red: #b32239;
   --red-trans: #b3223973;
   --white: #f2ebf4;
@@ -19,11 +20,11 @@
 
 body {
   width: 99vw;
-  font-family: var(--second-font);
-  color: white;
-  background-color: var(--black);
   box-sizing: border-box;
+  color: white;
+  font-family: var(--second-font);
   overflow-x: hidden;
+  background-color: var(--black);
 }
 input,
 input:active,
@@ -38,14 +39,15 @@ button:visited button:focus {
 }
 
 input {
-  background-color: transparent;
-  color: var(--white);
-  border-bottom: 2px solid var(--red);
-  padding: 8px;
-  text-align: center;
   display: block;
   width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--red);
+  text-align: center;
+  color: var(--white);
   font-family: var(--main-font);
+  background-color: transparent;
 
   &:active,
   &:focus {
@@ -60,14 +62,14 @@ input {
 }
 
 select {
+  margin-top: 8px;
+  margin-bottom: 8px;
   border: none;
   outline: none;
-  background-color: transparent;
   color: var(--white);
   font-family: var(--second-font);
   font-size: 1.2rem;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  background-color: transparent;
 
   &:focus {
     color: var(--white);
@@ -87,13 +89,19 @@ figure {
 
 .btn--main,
 .btn--second {
-  cursor: pointer;
+  @include center;
+  border-radius: 5px;
   outline: none;
-  transition: 200ms;
   padding: 0 45px;
+  cursor: pointer;
+  transition: 200ms;
 
   &:active {
     transform: scale(0.9);
+  }
+
+  svg {
+    margin-right: 8px;
   }
 }
 
@@ -106,9 +114,12 @@ figure {
     @extend .btn--main;
     height: 40px;
     font-size: 1.2rem;
-    border-radius: 5px;
     margin-top: 24px;
     width: 100%;
+  }
+  &-medium {
+    @extend .btn--main;
+    width: 160px;
   }
 }
 
@@ -116,6 +127,13 @@ figure {
   background-color: transparent;
   border: 1px solid var(--white);
   color: var(--white);
+  padding: 8px 0;
+
+  &-medium {
+    @extend .btn--second;
+    width: 160px;
+    margin: 16px;
+  }
 
   &-small {
     @extend .btn--second;

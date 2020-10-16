@@ -2,10 +2,20 @@ import router from '../../Routers'
 export default {
   namespaced: true,
   state: {
-    nameuser: 'Andres',
-    Nickname: 'circuandante',
     jwt: '',
-    userData: {}
+    userData: {
+      uuid: "TYZytZSHovZI86kc-70ME",
+      nickname: "CarGDev",
+      country: "Mexico",
+      postal_Code: "20208",
+      birthday: "1989-09-15",
+      status: true,
+      platform: "pc",
+      email: "ingecarlos.gutierrez@gmail.com",
+      phone: "12347890",
+      rol: "Master",
+      level: 1
+    }
   },
 
   mutations: {
@@ -51,10 +61,10 @@ export default {
     // -------------------login
     async login({
       commit,
-      dispatch
+      dispatch,
+      rootState,
     }, userdata) {
       const url = `http://dry-mesa-48732.herokuapp.com/user/login`
-
       const data = {
         nickname: userdata.nickname,
         password: userdata.password,
@@ -75,6 +85,7 @@ export default {
             if (data.status === 200) {
               commit('setJwt', data.body)
               dispatch('getUser', userdata.nickname)
+              rootState.load.loadShow = false
             }
           });
       } catch (error) {

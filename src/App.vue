@@ -5,14 +5,25 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  // created() {
-  //   if (localStorage.getItem("UserSesion")) console.log("sin seion");
-  //   else localStorage.setItem("UserSesion", "true");
-  // },
+  computed: {
+    ...mapState("load", ["loadShow"]),
+  },
 };
 </script>
 
 <style lang="scss">
 @import "./styles/styles.scss";
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

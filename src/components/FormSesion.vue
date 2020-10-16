@@ -53,9 +53,10 @@ export default {
   methods: {
     sendData() {
       if (this.typeform === "login") {
-        this.$store.dispatch("userData/login", this.userData);
+        this.$store.commit('load/setLoad')
+        this.$store.dispatch("user/login", this.userData);
       } else {
-        this.$store.dispatch("userData/signup", this.userData);
+        this.$store.dispatch("user/signup", this.userData);
       }
     },
   },

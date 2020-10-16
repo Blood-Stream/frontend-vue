@@ -34,11 +34,14 @@
         <img src="@/Assets/images/NovaPrime.png" alt="" />
       </figure>
     </div>
+    <Load v-show="loadShow"/>
   </div>
 </template>
 
 <script>
 import FormSesion from "@/Components/FormSesion.vue";
+import Load from '@/Assets/animations/lotie.vue'
+import { mapState } from 'vuex'
 
 import {
   faFacebook,
@@ -64,8 +67,12 @@ export default {
   },
   components: {
     FormSesion,
+    Load
   },
   computed: {
+    ...mapState('load', [
+      'loadShow'
+    ]),
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
     },
