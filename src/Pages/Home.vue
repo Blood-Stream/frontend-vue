@@ -5,9 +5,11 @@
     <div class="homeGrid">
       <!----------------hero -->
       <div class="hero">
+
         <figure class="main">
           <img src="@/Assets/images/games/plague.jpg" alt="" />
         </figure>
+
         <div class="shadow-left main">
           <div class="content">
             <h2>Descubre los Juegos que corren por tus venas</h2>
@@ -17,12 +19,16 @@
             </p>
           </div>
         </div>
+
+        <!-- second image -->
         <figure class="second">
           <img src="@/Assets/images/games/xcom.jpg" alt="" />
         </figure>
         <div class="shadow-bottom second">
           <p>New Release</p>
         </div>
+
+        <!-- third image -->
         <figure class="third">
           <img src="@/Assets/images/games/autum-dynasty.jpg" alt="" />
         </figure>
@@ -30,6 +36,7 @@
           <p>New Release</p>
         </div>
       </div>
+
       <!----------------filters -->
       <div id="Filters" class="filters">
         <select id="" name="New-release">
@@ -41,53 +48,67 @@
           <option value="">New release</option>
           <option value="">New release</option>
         </select>
+
         <select id="" name="Top-10">
           <option value="1a">Top 10</option>
         </select>
+
         <select id="" name="Edad">
           <option value="1a">Edad</option>
         </select>
+
         <select id="" name="Categoria">
           <option value="1a">Categoria</option>
         </select>
+
         <select id="" name="Mas-juegos">
           <option value="1a">Más juegos</option>
         </select>
+
         <select id="" name="Guardados">
           <option value="gurdados">Guardados</option>
         </select>
       </div>
+
       <!----------------Cards -->
       <div class="cards">
+
+        <!-- first group -->
         <div class="sugerencias">
-          <h1>Sugerencias</h1>
-          <p @click.prevent="leftModal">left</p>
-          <p @click.prevent="rightModal">Rigth</p>
+          <!-- <h1>Sugerencias</h1> -->
+          <!-- <p @click.prevent="leftModal">left</p>
+          <p @click.prevent="rightModal">Rigth</p> -->
           <div id="$gridCards" class="gridCards">
             <Card @click.prevent="getDataGame(id)" />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
-        </div>
-        <div class="sugerencias">
-          <h1>Sugerencias</h1>
-          <div id="$gridCards2" class="gridCards">
             <Card @click.prevent="getDataGame(id)" />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" />
           </div>
         </div>
+
       </div>
     </div>
-    <ModalGames v-show="modal" />
+    <transition name="fade">
+      <ModalGames v-show="modal" />
+    </transition>
   </div>
 </template>
 
@@ -134,4 +155,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../styles/pages/home.scss";
+slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

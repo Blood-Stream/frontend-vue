@@ -27,8 +27,14 @@
 
 #Card:hover {
   transition: 500ms;
-  transition-timing-function: ease-in-out;
-  transform: scale(1.1);
-  margin-left: 24px;
-  margin-right: 24px;
+  transition-timing-function: cubic-bezier(0.19, 0.86, 0.31, 1.01);
+  transform: scale(0.9);
+  // margin-left: 24px;
+  // margin-right: 24px;
+  box-shadow: 0 0 22px var(--red);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#card:active {
 }

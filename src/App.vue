@@ -1,6 +1,8 @@
 <template>
   <div class="div">
-    <router-view />
+    <transition name="fade">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -17,9 +19,15 @@ export default {
 <style lang="scss">
 @import "./styles/styles.scss";
 
-.fade-enter-active,
+.fade-enter-active{
+
+  transition-duration: 1300ms;
+  transition-timing-function: cubic-bezier(.4,.48,.27,.94);
+
+}
+
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1300ms cubic-bezier(.4,.48,.27,.94);
 }
 
 .fade-enter-from,

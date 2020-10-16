@@ -8,6 +8,7 @@
       <!-- circle -->
       <div class="circle"></div>
 
+      <!-- abstract -->
       <div class="text">
         <h1>
           Descubre los Juegos <br />quecorren por tus<br />
