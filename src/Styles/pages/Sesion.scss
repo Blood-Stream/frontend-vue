@@ -74,3 +74,24 @@
   z-index: 1;
   animation: appear 200ms ease-in-out;
 }
+
+@media screen and (max-width: 620px) {
+  #Sesion {
+  }
+
+  .sesionWrap {
+    display: block;
+  }
+
+  .contentSesion {
+    width: 100%;
+  }
+
+  .imageSesion {
+    display: none;
+  }
+
+  .circleBackground {
+    display: none;
+  }
+}

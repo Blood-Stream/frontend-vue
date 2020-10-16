@@ -1,12 +1,20 @@
 <template>
   <div class="Sesion" id="Sesion">
     <Nav-bar sesion />
+
+    <!-- Sesion -->
     <div class="sesionWrap">
+
       <div class="contentSesion">
+        <!-- title -->
         <h2 class="sesion__title">
           {{ typeOfForm }}
         </h2>
 
+        <!-- circle -->
+        <div class="circleBackground"></div>
+
+        <!-- redes sociales -->
         <div class="signupRrss">
           <button class="btn--second-small">
             <font-awesome-icon :icon="fb" />
@@ -25,15 +33,17 @@
             <span>Gmail</span>
           </button>
         </div>
+
+        <!-- form  -->
         <form-sesion :typeform="typeform" />
       </div>
-
-      <div class="circleBackground"></div>
 
       <figure class="imageSesion">
         <img src="@/Assets/images/NovaPrime.png" alt="" />
       </figure>
     </div>
+
+    <!-- load -->
     <Load v-show="loadShow"/>
   </div>
 </template>
