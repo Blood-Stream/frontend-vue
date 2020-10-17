@@ -73,37 +73,37 @@ export default {
       dispatch,
       rootState,
     }, userdata) {
-      sessionStorage.setItem('UserSesion', 'ok')
-      // const url = `http://dry-mesa-48732.herokuapp.com/user/login`
-      // const data = {
-      //   nickname: userdata.nickname,
-      //   password: userdata.password,
-      // };
+      const url = `http://dry-mesa-48732.herokuapp.com/user/login`
+      const data = {
+        nickname: userdata.nickname,
+        password: userdata.password,
+      };
 
-      // const myInit = {
-      //   method: 'POST',
-      //   body: JSON.stringify(data),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   mode: "cors",
-      // };
+      const myInit = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      };
 
-      // try {
-      //   await fetch(url, myInit)
-      //     .then((response) => response.json())
-      //     .then(async (data) => {
-      //       if (data.status === 200) {
-      //         commit('setJwt', data.body)
-      //         dispatch('getUser', userdata.nickname)
-      //         rootState.load.loadShow = false
-      //       }
-      //     });
-      // } catch (error) {
-      //   alert(error)
-      //   console.error(error);
-      //   rootState.load.loadShow = false
-      // }
+      try {
+        await fetch(url, myInit)
+          .then((response) => response.json())
+          .then(async (data) => {
+            if (data.status === 200) {
+              sessionStorage.setItem('UserSesion', 'ok')
+              commit('setJwt', data.body)
+              dispatch('getUser', userdata.nickname)
+              rootState.load.loadShow = false
+            }
+          });
+      } catch (error) {
+        alert(error)
+        console.error(error);
+        rootState.load.loadShow = false
+      }
     },
 
     // ---------------------- signup
