@@ -17,9 +17,7 @@
 
         <!-- button singup -->
         <router-link to="/sesion/signup">
-          <transition name="fade">
-            <button class="btn--main-big">Signup</button>
-          </transition>
+          <button class="btn--main-big">Signup</button>
         </router-link>
 
         <!-- social media -->

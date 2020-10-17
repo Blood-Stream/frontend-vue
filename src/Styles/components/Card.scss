@@ -38,3 +38,9 @@
 
 #card:active {
 }
+
+@media screen and (max-width: 620px) {
+  #Card {
+    margin: auto;
+  }
+}

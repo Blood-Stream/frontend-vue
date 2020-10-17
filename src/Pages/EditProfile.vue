@@ -3,8 +3,14 @@
     <NavBarDash />
     <!-- edit profile -->
     <div class="profile">
+
+      <!--------------------------- profile image -->
       <img src="@/Assets/images/profile-real.jpg" alt="" />
+
+      <!--------------------------- data user -->
       <div class="data">
+
+        <!----------- Nickname -->
         <div class="nickname">
           <h2>
             {{ userData.nickname }}
@@ -13,21 +19,28 @@
             {{ flag }}
           </p>
         </div>
+
+        <!------------ form -->
+        <form @submit.prevent="editProfile" class="form">
           <input
             type="date"
-            :value="userData.birthday"
+            v-model="newData.birthday"
             autocomplete="on"
           >
           <input
             type="mail"
-            :value="userData.email"
+            v-model="newData.email"
             autocomplete="on"
           >
           <input
             type="phone"
-            :value="userData.phone"
+            v-model="newData.phone"
             autocomplete="on"
           >
+          <button class="btn--main-big" type="submit" >
+            Guardar
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -41,7 +54,11 @@ export default {
 
   data() {
     return {
-      // flag: ''
+      newData: {
+        email: this.$store.state.user.userData.email,
+        phone: this.$store.state.user.userData.phone,
+        birthday: this.$store.state.user.userData.birthday,
+      },
     }
   },
 
@@ -52,11 +69,20 @@ export default {
     flag() {
       return this.userData.country
     }
+
   },
 
   components: {
     NavBarDash
-  }
+  },
+
+  methods: {
+    editProfile () {
+      this.$store.commit('user/setNewData', this.newData)
+      this.$store.dispatch('user/editProfile')
+    }
+
+  },
 };
 </script>
 

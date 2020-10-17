@@ -1,4 +1,4 @@
-import router from '../../Routers'
+// import router from '../../Routers'
 export default {
   namespaced: true,
   state: {
@@ -19,21 +19,29 @@ export default {
   },
 
   mutations: {
-    // ----------- set data user
+    // --------------------- set data user
     dataUser(state, userdata) {
       state.userData = userdata
     },
 
-    // -------------- set jwt
+    // --------------------- set jwt
     setJwt(state, jwt) {
       state.jwt = jwt
-    }
+    },
+
+    // --------------------- new data
+    setNewData(state, payload) {
+      state.userData.email = payload.email
+      state.userData.phone = payload.phone
+      state.userData.birthday = payload.birthday
+    },
   },
 
   actions: {
-    // ----------------------get user
+    // ---------------------- get user
     async getUser({
-      commit
+      commit,
+      state
     }, user) {
       const url = `http://dry-mesa-48732.herokuapp.com/user/${user}`
       const myInit = {
@@ -50,7 +58,8 @@ export default {
           .then(data => {
             if (data.status === 200) {
               commit('dataUser', data.body)
-              router.push({ path: '/home' })
+              console.log(state.dataUser);
+              // router.push({ path: '/home' })
             }
           });
       } catch (error) {
@@ -58,42 +67,46 @@ export default {
       }
     },
 
-    // -------------------login
+    // ---------------------- login
     async login({
       commit,
       dispatch,
       rootState,
     }, userdata) {
-      const url = `http://dry-mesa-48732.herokuapp.com/user/login`
-      const data = {
-        nickname: userdata.nickname,
-        password: userdata.password,
-      };
+      sessionStorage.setItem('UserSesion', 'ok')
+      // const url = `http://dry-mesa-48732.herokuapp.com/user/login`
+      // const data = {
+      //   nickname: userdata.nickname,
+      //   password: userdata.password,
+      // };
 
-      const myInit = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-      };
-      try {
-        await fetch(url, myInit)
-          .then((response) => response.json())
-          .then(async (data) => {
-            if (data.status === 200) {
-              commit('setJwt', data.body)
-              dispatch('getUser', userdata.nickname)
-              rootState.load.loadShow = false
-            }
-          });
-      } catch (error) {
-        console.error(error);
-      }
+      // const myInit = {
+      //   method: 'POST',
+      //   body: JSON.stringify(data),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   mode: "cors",
+      // };
+
+      // try {
+      //   await fetch(url, myInit)
+      //     .then((response) => response.json())
+      //     .then(async (data) => {
+      //       if (data.status === 200) {
+      //         commit('setJwt', data.body)
+      //         dispatch('getUser', userdata.nickname)
+      //         rootState.load.loadShow = false
+      //       }
+      //     });
+      // } catch (error) {
+      //   alert(error)
+      //   console.error(error);
+      //   rootState.load.loadShow = false
+      // }
     },
 
-    // ----------------------- signup
+    // ---------------------- signup
     async signup({
       commit
     }, userdata) {
@@ -131,5 +144,26 @@ export default {
         console.error(error);
       }
     },
+
+    // ---------------------- edit profile
+    async editProfile ({ state }) {
+      const myInit = {
+        method: 'POST',
+        body: JSON.stringify(state.userData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      };
+
+      try {
+        fetch('http://dry-mesa-48732.herokuapp.com/user/', myInit)
+          .then(response => response.json())
+          .then(newUserData => console.log(newUserData))
+      } catch (error) {
+        console.error(error);
+      }
+      console.log(state.userData)
+    }
   }
 }

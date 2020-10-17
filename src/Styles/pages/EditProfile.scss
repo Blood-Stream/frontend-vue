@@ -3,13 +3,14 @@
 #EditProfile {
   .profile {
     width: 100vw;
-    height: 100vh;
+    margin-top: 40px;
     @include center;
     flex-direction: column;
   }
 
   img {
     border-radius: 50%;
+    margin-bottom: 24px;
   }
 
   .data {
@@ -18,8 +19,16 @@
     &::before {
       color: white;
     }
-    input {
-      text-align: left;
+
+    .form {
+      margin-top: 24px;
+      input {
+        text-align: left;
+      }
+
+      button {
+        margin-top: 40px;
+      }
     }
     .nickname {
     }
