@@ -97,6 +97,7 @@ export default {
               commit('setJwt', data.body)
               dispatch('getUser', userdata.nickname)
               rootState.load.loadShow = false
+              console.log(data)
             }
           });
       } catch (error) {

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 // pages
 import Home from '../Pages/Home.vue'
 import Landing from '../Pages/Landing.vue'
@@ -15,10 +15,6 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    // beforeEnter: (to, from) => {
-    //   if (sesion)
-    //   return false
-    // },
   },
   {
     path: '/user',
@@ -57,34 +53,25 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 })
 
-// function existToken() {
-//   return Boolean(sessionStorage.getItem('UserSesion'))
-// }
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/home' && !sesion) {
+//     next('/landing');
+//   } else {
+//     next()
+//   }
+// });
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/home' && !sesion) {
-    // next();
-    next('/landing');
-    console.log('sesino chek', sesion);
-  } else {
-    next()
-    console.log('not sesino');
-  }
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.path === '/user' && !sesion) {
-    // next();
-    next('/landing');
-    console.log('sesino chek', sesion);
-  } else {
-    next()
-    console.log('not sesino');
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/user' && !sesion) {
+//     next('/landing');
+//   } else {
+//     next()
+//   }
+// });
 
 export default router

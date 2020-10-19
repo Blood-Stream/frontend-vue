@@ -79,28 +79,22 @@
           <!-- <p @click.prevent="leftModal">left</p>
           <p @click.prevent="rightModal">Rigth</p> -->
           <div id="$gridCards" class="gridCards">
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
-            <Card @click.prevent="getDataGame(id)" />
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 100"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 200"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 300"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 400"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 500"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 600"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 700"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 800"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 900"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1000"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1100"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1200"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1300"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1400"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1500"/>
+            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1600"/>
           </div>
         </div>
 

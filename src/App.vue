@@ -21,13 +21,13 @@ export default {
 
 .fade-enter-active{
 
-  transition-duration: 1300ms;
+  transition-duration: 3500ms;
   transition-timing-function: cubic-bezier(.4,.48,.27,.94);
 
 }
 
 .fade-leave-active {
-  transition: opacity 1300ms cubic-bezier(.4,.48,.27,.94);
+  transition: opacity 2500ms cubic-bezier(.4,.48,.27,.94);
 }
 
 .fade-enter-from,

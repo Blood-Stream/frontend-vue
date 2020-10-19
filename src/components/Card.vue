@@ -1,5 +1,5 @@
 <template>
-  <div id="Card">
+  <div id="Card" ref="Card">
     <!--------------- image -->
     <figure>
       <img src="@/Assets/images/games/altos.png" alt="" />
@@ -39,6 +39,10 @@ export default {
       type: String,
       default: "XCom 2",
     },
+    delay: {
+      type: Number,
+      Default: 100
+    }
   },
   data() {
     return {
@@ -47,6 +51,12 @@ export default {
       Heart: faHeart,
       game: faGamepad,
     };
+  },
+  mounted () {
+    const templateCard = this.$refs.Card
+    const att = document.createAttribute("style")
+    att.value = `animation-delay: ${this.delay}ms`
+    templateCard.setAttributeNode(att);
   },
 };
 </script>

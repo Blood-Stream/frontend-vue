@@ -5,6 +5,10 @@
   height: 292px;
   margin: 8px;
   cursor: pointer;
+  opacity: 0;
+  animation-name: showCard;
+  animation-duration: 9s;
+  animation-fill-mode: forwards;
 
   h3 {
     margin: 16px;
@@ -42,5 +46,14 @@
 @media screen and (max-width: 620px) {
   #Card {
     margin: auto;
+  }
+}
+
+@keyframes showCard {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
