@@ -12,7 +12,7 @@ const routes = [
     component: Landing
   },
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
   },
@@ -38,19 +38,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "sesions" */ '@/Pages/Sesion.vue')
   },
   {
-    path: '/',
-    redirect: to => {
-      let path = '/landing'
-      sesion = Boolean(sessionStorage.getItem('UserSesion'))
-      if (sesion) {
-        path = '/home'
-      }
-      return {
-        path: `${path}`
-      }
-    }
-  },
-  {
     path: '/landing',
     name: 'landing',
     component: () => import(/* webpackChunkName: "landing" */ '../Pages/Landing.vue')
@@ -64,7 +51,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/home' && !sesion) {
+  sesion = Boolean(sessionStorage.getItem('UserSesion'))
+  if (to.path === '/' && !sesion) {
     next('/landing');
   } else {
     next()
@@ -72,6 +60,7 @@ router.beforeEach((to, from, next) => {
 });
 
 router.beforeEach((to, from, next) => {
+  sesion = Boolean(sessionStorage.getItem('UserSesion'))
   if (to.path === '/user' && !sesion) {
     next('/landing');
   } else {

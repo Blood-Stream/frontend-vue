@@ -67,7 +67,7 @@ export default {
             if (data.status === 200) {
               commit('dataUser', data.body)
               rootState.load.loadShow = false
-              router.push({ path: '/home' })
+              router.push({ path: '/' })
             }
           });
       } catch (error) {
