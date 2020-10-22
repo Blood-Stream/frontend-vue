@@ -1,11 +1,14 @@
 <template>
   <div id="navbar" v-bind:class="{ NavBar: login }">
-    <router-link to="/sesion/login">
+
+    <div class="wrapMenu btn" @click.prevent="setWrapMenu">
       <font-awesome-icon :icon="menu" color="var(--white)" />
-    </router-link>
+    </div>
+
     <router-link to="/">
       <h2 class="logo">Blood-Stream</h2>
     </router-link>
+
     <router-link to="/user" class="profile-border">
       <div class="profile">
         <img src="@/Assets/images/profile-real.jpg" alt="" />
@@ -15,7 +18,9 @@
 </template>
 
 <script>
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { mapMutations } from 'vuex'
+import { faBars } from "@fortawesome/free-solid-svg-icons"
+
 export default {
   props: {
     login: {
@@ -27,6 +32,9 @@ export default {
     return {
       menu: faBars,
     };
+  },
+  methods: {
+    ...mapMutations('statistics', ['setWrapMenu'])
   },
 };
 </script>

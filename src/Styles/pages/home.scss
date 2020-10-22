@@ -17,6 +17,26 @@
     width: 100%;
   }
 
+  .menuWrap {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    @include center;
+    width: 200px;
+    height: 300px;
+    background-color: var(--red);
+    border-radius: 15px;
+    box-sizing: border-box;
+
+    ul {
+      padding: 0;
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .hero {
     display: grid;
     height: 400px;

@@ -88,6 +88,10 @@ figure {
   margin: 0;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .btn--main,
 .btn--second {
   @include center;

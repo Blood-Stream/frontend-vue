@@ -1,6 +1,16 @@
 <template>
   <div class="Home" id="Home">
     <NavBarDash />
+
+    <!------------------ menu burguer -->
+    <div class="menuWrap" v-show="wrapMenu">
+      <ul>
+        <router-link to="/statistic">
+          Statistics
+        </router-link>
+      </ul>
+    </div>
+
     <!------------------ grid dashboard  -->
     <div class="homeGrid">
       <!----------------hero -->
@@ -100,6 +110,8 @@
 
       </div>
     </div>
+
+    <!------------------- modal -->
     <transition name="fade">
       <ModalGames v-show="modal" />
     </transition>
@@ -128,6 +140,7 @@ export default {
   },
   computed: {
     ...mapState("game", ["game", "modal"]),
+    ...mapState("statistics", ["wrapMenu"]),
   },
   methods: {
     ...mapActions("game", ["getDataGame"]),

@@ -13,7 +13,7 @@
         <!----------- Nickname -->
         <div class="nickname">
           <h2>
-            {{ userData.nickname }}
+            {{ userData.Nickname }}
           </h2>
           <p>
             {{ flag }}
@@ -24,7 +24,7 @@
         <form @submit.prevent="editProfile" class="form">
           <input
             type="date"
-            v-model="newData.birthday"
+            v-model="newData.Birthday"
             autocomplete="on"
           >
           <input
@@ -55,9 +55,9 @@ export default {
   data() {
     return {
       newData: {
-        email: this.$store.state.user.userData.email,
-        phone: this.$store.state.user.userData.phone,
-        birthday: this.$store.state.user.userData.birthday,
+        email: this.$store.state.user.userData.contactId.email,
+        phone: this.$store.state.user.userData.contactId.phone,
+        birthday: this.$store.state.user.userData.Birthday,
       },
     }
   },
@@ -67,7 +67,7 @@ export default {
       'userData'
     ]),
     flag() {
-      return this.userData.country
+      return this.userData.Country
     }
 
   },

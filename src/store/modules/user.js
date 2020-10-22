@@ -1,20 +1,25 @@
-// import router from '../../Routers'
+import router from '../../Routers'
 export default {
   namespaced: true,
   state: {
     jwt: '',
     userData: {
-      uuid: "TYZytZSHovZI86kc-70ME",
-      nickname: "CarGDev",
-      country: "Mexico",
-      postal_Code: "20208",
-      birthday: "1989-09-15",
-      status: true,
-      platform: "pc",
-      email: "ingecarlos.gutierrez@gmail.com",
-      phone: "12347890",
-      rol: "Master",
-      level: 1
+      uuid: "",
+      Avatar: '',
+      Nickname: "",
+      Country: "",
+      Postal_Code: "",
+      Birthday: "",
+      Status: true,
+      Platform: "",
+      rol: "",
+      level: 1,
+      contactId: {
+        id: 1,
+        uuid: "",
+        email: "",
+        phone: ""
+      },
     }
   },
 
@@ -22,6 +27,9 @@ export default {
     // --------------------- set data user
     dataUser(state, userdata) {
       state.userData = userdata
+      console.log(
+        userdata
+      );
     },
 
     // --------------------- set jwt
@@ -41,7 +49,7 @@ export default {
     // ---------------------- get user
     async getUser({
       commit,
-      state
+      rootState
     }, user) {
       const url = `http://dry-mesa-48732.herokuapp.com/user/${user}`
       const myInit = {
@@ -58,12 +66,14 @@ export default {
           .then(data => {
             if (data.status === 200) {
               commit('dataUser', data.body)
-              console.log(state.dataUser);
-              // router.push({ path: '/home' })
+              rootState.load.loadShow = false
+              router.push({ path: '/home' })
             }
           });
       } catch (error) {
+        alert(error)
         console.error(error);
+        rootState.load.loadShow = false
       }
     },
 
@@ -96,8 +106,6 @@ export default {
               sessionStorage.setItem('UserSesion', 'ok')
               commit('setJwt', data.body)
               dispatch('getUser', userdata.nickname)
-              rootState.load.loadShow = false
-              console.log(data)
             }
           });
       } catch (error) {
@@ -109,7 +117,8 @@ export default {
 
     // ---------------------- signup
     async signup({
-      commit
+      commit,
+      rootState
     }, userdata) {
       const url = `http://dry-mesa-48732.herokuapp.com/user/`
       const data = {
@@ -139,10 +148,14 @@ export default {
         await fetch(url, myInit)
           .then(response => response.json())
           .then(data => {
+            console.log(data);
             commit('dataUser', data.body)
+            router.push({ path: '/sesion/login' })
           });
       } catch (error) {
+        alert(error)
         console.error(error);
+        rootState.load.loadShow = false
       }
     },
 

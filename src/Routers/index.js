@@ -22,6 +22,11 @@ const routes = [
     component: () => import(/* webpackChunkName: 'profile' */ '@/Pages/EditProfile.vue')
   },
   {
+    path: '/statistic',
+    name: 'statistic',
+    component: () => import(/* webpackChunkName: 'profile' */ '@/Pages/Statistic.vue')
+  },
+  {
     path: '/load',
     name: 'load',
     component: () => import(/* webpackChunkName: 'load' */ '@/Assets/animations/lotie.vue')
@@ -58,20 +63,20 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/home' && !sesion) {
-//     next('/landing');
-//   } else {
-//     next()
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.path === '/home' && !sesion) {
+    next('/landing');
+  } else {
+    next()
+  }
+});
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/user' && !sesion) {
-//     next('/landing');
-//   } else {
-//     next()
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.path === '/user' && !sesion) {
+    next('/landing');
+  } else {
+    next()
+  }
+});
 
 export default router
