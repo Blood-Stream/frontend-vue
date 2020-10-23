@@ -11,13 +11,25 @@
   background-color: var(--black-trans);
 
   .container {
-    background-color: var(--black);
+    position: relative;
+    display: flex;
     width: 920px;
     height: 560px;
     padding: 64px;
-    display: flex;
     border-radius: 10px;
     box-shadow: 10px 10px 30px var(--black);
+    background-color: var(--black);
+  }
+
+  .close {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    cursor: pointer;
+
+    .svg-inline--fa {
+      font-size: 2rem;
+    }
   }
 
   .imageGame {

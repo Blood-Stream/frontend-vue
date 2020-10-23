@@ -1,8 +1,11 @@
 @import "../utils/mixins";
 
 #EditProfile {
+  max-width: 1366px;
+  margin: auto;
+
   .profile {
-    width: 100vw;
+    width: 100%;
     margin-top: 40px;
     @include center;
     flex-direction: column;

@@ -1,10 +1,21 @@
 <template>
   <div id="ModalGames" @keyup.esc="setModal" tabindex="0">
     <div class="container">
+      <!-------------- close  -->
+      <div class="close" @click="setModal" >
+        <!-- <font-awesome-icon :icon="close" color="var(--red)"/> -->
+        <font-awesome-icon :icon="close" color="white"/>
+      </div>
+
+      <!-------------- content -->
       <div class="imageGame">
+
+        <!------------- image -->
         <figure>
           <img :src="gameData.image" alt="" />
         </figure>
+
+        <!------------- buttons -->
         <div>
           <a :href="gameData.url" class="btn--main-medium btngoGame">
             <font-awesome-icon :icon="game" />
@@ -16,16 +27,20 @@
           <p>Guardar</p>
         </div>
       </div>
+
+      <!------------- data info -->
       <div class="info">
         <h1>
           {{ gameData.name }}
         </h1>
+
         <p class="released">released {{ gameData.released }}</p>
         <div class="rate">
           <font-awesome-icon :icon="star" color="var(--yellow)" />
           <font-awesome-icon :icon="star" color="var(--yellow)" />
           <font-awesome-icon :icon="star" color="var(--yellow)" />
         </div>
+
         <div class="age">
           <p>
             {{ gameData.age }}
@@ -51,7 +66,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import { faStar, faHeart, faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faHeart, faGamepad, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   data() {
@@ -59,6 +74,7 @@ export default {
       star: faStar,
       heart: faHeart,
       game: faGamepad,
+      close: faTimesCircle,
     };
   },
   computed: {

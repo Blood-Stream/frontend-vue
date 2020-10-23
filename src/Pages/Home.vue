@@ -2,14 +2,7 @@
   <div class="Home" id="Home">
     <NavBarDash />
 
-    <!------------------ menu burguer -->
-    <div class="menuWrap" v-show="wrapMenu">
-      <ul>
-        <router-link to="/statistic">
-          Statistics
-        </router-link>
-      </ul>
-    </div>
+    <Menu-wrap/>
 
     <!------------------ grid dashboard  -->
     <div class="homeGrid">
@@ -140,7 +133,6 @@ export default {
   },
   computed: {
     ...mapState("game", ["game", "modal"]),
-    ...mapState("statistics", ["wrapMenu"]),
   },
   methods: {
     ...mapActions("game", ["getDataGame"]),

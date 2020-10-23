@@ -4,10 +4,14 @@
 #navbar {
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   display: flex;
+  margin: auto;
   @include center-between;
   width: 100%;
+  max-width: 1717px;
   height: 5vw;
   padding: 0px 30px;
   max-height: 80px;

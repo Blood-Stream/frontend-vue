@@ -7,6 +7,9 @@ export default {
   mutations: {
     setWrapMenu (state) {
       state.wrapMenu = !state.wrapMenu
+    },
+    hideWrapMenu (state) {
+      state.wrapMenu = false
     }
   }
 }

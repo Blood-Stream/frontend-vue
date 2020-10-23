@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="statistic">
     <NavBar />
-    <iframe :width="widthScree" height="1080" src="https://datastudio.google.com/embed/reporting/9d650a14-8f91-4f93-bcf4-745eb10890d2/page/copiB" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <iframe width="100%" height="1080" src="https://datastudio.google.com/embed/reporting/9d650a14-8f91-4f93-bcf4-745eb10890d2/page/copiB" frameborder="0" style="border:0" allowfullscreen></iframe>
   </div>
 </template>
 
@@ -20,3 +20,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+
+  #statistic {
+    max-width: 1366px;
+    margin: auto;
+  }
+
+</style>

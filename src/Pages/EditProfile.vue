@@ -1,6 +1,8 @@
 <template>
   <div id="EditProfile">
     <NavBarDash />
+    <Menu-wrap />
+
     <!-- edit profile -->
     <div class="profile">
 
