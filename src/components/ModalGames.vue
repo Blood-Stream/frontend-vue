@@ -36,9 +36,31 @@
 
         <p class="released">released {{ gameData.released }}</p>
         <div class="rate">
-          <font-awesome-icon :icon="star" color="var(--yellow)" />
-          <font-awesome-icon :icon="star" color="var(--yellow)" />
-          <font-awesome-icon :icon="star" color="var(--yellow)" />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 1 <= starRat ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(1)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 2 <= starRat ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(2)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 3 <= starRat ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(3)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 4 <= starRat ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(4)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 5 <= starRat ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(5)"
+          />
         </div>
 
         <div class="age">
@@ -75,6 +97,7 @@ export default {
       heart: faHeart,
       game: faGamepad,
       close: faTimesCircle,
+      starRat: 3
     };
   },
   computed: {
@@ -82,6 +105,10 @@ export default {
   },
   methods: {
     ...mapMutations("game", ["setModal"]),
+
+    setRating(numberStar) {
+      this.starRat = numberStar
+    }
   },
 };
 </script>

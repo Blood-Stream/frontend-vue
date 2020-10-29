@@ -50,14 +50,14 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  sesion = Boolean(sessionStorage.getItem('UserSesion'))
-  if (to.path === '/' && !sesion) {
-    next('/landing');
-  } else {
-    next()
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   sesion = Boolean(sessionStorage.getItem('UserSesion'))
+//   if (to.path === '/' && !sesion) {
+//     next('/landing');
+//   } else {
+//     next()
+//   }
+// });
 
 router.beforeEach((to, from, next) => {
   sesion = Boolean(sessionStorage.getItem('UserSesion'))

@@ -38,6 +38,7 @@ export default {
       default: "login",
     },
   },
+
   data() {
     return {
       userData: {
@@ -47,11 +48,13 @@ export default {
       },
     };
   },
+
   computed: {
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
     },
   },
+
   methods: {
     sendData() {
       if (this.typeform === "login") {

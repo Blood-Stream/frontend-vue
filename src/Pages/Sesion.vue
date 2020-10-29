@@ -17,20 +17,28 @@
         <!-- redes sociales -->
         <div class="signupRrss">
           <button class="btn--second-small">
-            <font-awesome-icon :icon="fb" />
-            <span>Facebook</span>
+            <a href="https://ssr-server.herokuapp.com/auth/facebook">
+              <font-awesome-icon :icon="fb" />
+              <span>Facebook</span>
+            </a>
           </button>
           <button class="btn--second-small">
-            <font-awesome-icon :icon="twitter" />
-            <span>Twitter</span>
+            <a href="https://ssr-server.herokuapp.com/auth/twitter">
+              <font-awesome-icon :icon="twitter" />
+              <span>Twitter</span>
+            </a>
           </button>
           <button class="btn--second-small">
-            <font-awesome-icon :icon="git" />
-            <span>GitHub</span>
+            <a href="https://ssr-server.herokuapp.com/auth/github">
+              <font-awesome-icon :icon="git" />
+              <span>GitHub</span>
+            </a>
           </button>
           <button class="btn--second-small">
-            <font-awesome-icon :icon="google" />
-            <span>Gmail</span>
+            <a href="http://ssr-server.herokuapp.com/auth/google-oauth" target="_parent">
+              <font-awesome-icon :icon="google" />
+              <span>Gmail</span>
+            </a>
           </button>
         </div>
 

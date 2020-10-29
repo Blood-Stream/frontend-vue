@@ -1,4 +1,5 @@
 import router from '../../Routers'
+
 export default {
   namespaced: true,
   state: {
@@ -51,7 +52,7 @@ export default {
       commit,
       rootState
     }, user) {
-      const url = `http://dry-mesa-48732.herokuapp.com/user/${user}`
+      const url = `${process.env.VUE_APP_URL_SERVICE}user/${user}`
       const myInit = {
         method: `GET`,
         headers: {
@@ -83,18 +84,15 @@ export default {
       dispatch,
       rootState,
     }, userdata) {
-      const url = `http://dry-mesa-48732.herokuapp.com/user/login`
-      const data = {
-        nickname: userdata.nickname,
-        password: userdata.password,
-      };
+      const url = `${process.env.VUE_APP_URL_SERVICE}auth/sign-in`
+
+      const headers = new Headers()
+      headers.set('Authorization', 'Basic ' + btoa(`${userdata.nickname}:${userdata.password}`))
+      headers.set('Content-Type', 'application/json')
 
       const myInit = {
         method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers,
         mode: "cors",
       };
 
@@ -102,11 +100,12 @@ export default {
         await fetch(url, myInit)
           .then((response) => response.json())
           .then(async (data) => {
-            if (data.status === 200) {
-              sessionStorage.setItem('UserSesion', 'ok')
-              commit('setJwt', data.body)
-              dispatch('getUser', userdata.nickname)
-            }
+            console.log(data);
+            // if (data.status === 200) {
+            //   sessionStorage.setItem('UserSesion', 'ok')
+            //   commit('setJwt', data.body)
+            //   dispatch('getUser', userdata.nickname)
+            // }
           });
       } catch (error) {
         alert(error)
@@ -120,7 +119,7 @@ export default {
       commit,
       rootState
     }, userdata) {
-      const url = `http://dry-mesa-48732.herokuapp.com/user/`
+      const url = `${process.env.VUE_APP_URL_SERVICE}auth/sign-up`
       const data = {
         nickname: userdata.nickname,
         country: "-",
@@ -149,8 +148,8 @@ export default {
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            commit('dataUser', data.body)
-            router.push({ path: '/sesion/login' })
+            // commit('dataUser', data.body)
+            // router.push({ path: '/sesion/login' })
           });
       } catch (error) {
         alert(error)
@@ -161,9 +160,25 @@ export default {
 
     // ---------------------- edit profile
     async editProfile ({ state }) {
+      const datasss = {
+        uuid: "JyeSlNQ27QM0Ci-j2Uak2",
+        nickname: "CarGDdddddev",
+        country: "Mexico-Colombia",
+        postal_Code: "20208",
+        birthday: "1989-09-15",
+        status: true,
+        platform: "pc",
+        email: "ingecarlos.gutierrez@gmail.com",
+        phone: "12347890",
+        rol: "Master",
+        level: 1,
+        password: "asdf"
+      }
+
       const myInit = {
         method: 'POST',
-        body: JSON.stringify(state.userData),
+        body: JSON.stringify(datasss),
+        // body: JSON.stringify(state.userData),
         headers: {
           "Content-Type": "application/json",
         },
@@ -171,13 +186,12 @@ export default {
       };
 
       try {
-        fetch('http://dry-mesa-48732.herokuapp.com/user/', myInit)
+        fetch(`${process.env.VUE_APP_URL_SERVICE}user/`, myInit)
           .then(response => response.json())
           .then(newUserData => console.log(newUserData))
       } catch (error) {
         console.error(error);
       }
-      console.log(state.userData)
     }
   }
 }
