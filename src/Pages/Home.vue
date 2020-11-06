@@ -2,15 +2,15 @@
   <div class="Home" id="Home">
     <NavBarDash />
 
-    <Menu-wrap/>
+    <Menu-wrap />
 
-    <!------------------ grid dashboard  -->
+    <!------------------------------- grid dashboard  -->
     <div class="homeGrid">
-      <!----------------hero -->
+      <!--------------------------- hero -->
       <div class="hero">
 
         <figure class="main">
-          <img src="@/Assets/images/games/plague.jpg" alt="" />
+          <img :src="Boolean(gameHero[0]) ? gameHero[0].Icon_Url : 'https://gaminglaptopunder.com/wp-content/uploads/2019/12/dc486960-701e-421b-b145-70d04f3b85be.jpg'" alt="" />
         </figure>
 
         <div class="shadow-left main">
@@ -25,7 +25,7 @@
 
         <!-- second image -->
         <figure class="second">
-          <img src="@/Assets/images/games/xcom.jpg" alt="" />
+          <img :src="Boolean(gameHero[1]) ? gameHero[1].Icon_Url : 'https://gaminglaptopunder.com/wp-content/uploads/2019/12/dc486960-701e-421b-b145-70d04f3b85be.jpg'" alt="" />
         </figure>
         <div class="shadow-bottom second">
           <p>New Release</p>
@@ -33,71 +33,34 @@
 
         <!-- third image -->
         <figure class="third">
-          <img src="@/Assets/images/games/autum-dynasty.jpg" alt="" />
+          <img :src="Boolean(gameHero[2]) ? gameHero[2].Icon_Url : 'https://gaminglaptopunder.com/wp-content/uploads/2019/12/dc486960-701e-421b-b145-70d04f3b85be.jpg'" alt="" />
         </figure>
         <div class="shadow-bottom third">
           <p>New Release</p>
         </div>
       </div>
 
-      <!----------------filters -->
-      <div id="Filters" class="filters">
-        <select id="" name="New-release">
-          <option value="">New release</option>
-          <option value="">New release</option>
-          <option value="">New release</option>
-          <option value="">New release</option>
-          <option value="">New release</option>
-          <option value="">New release</option>
-          <option value="">New release</option>
-        </select>
+      <!--------------------------- filters -->
+      <ul class="filters">
+        <li @click.prevent="getGames">
+          Top
+        </li>
+        <li @click.prevent="customizeGames">
+          For you
+        </li>
+        <li @click.prevent="setArrayWithSaveGames">
+          Saved
+        </li>
+      </ul>
 
-        <select id="" name="Top-10">
-          <option value="1a">Top 10</option>
-        </select>
-
-        <select id="" name="Edad">
-          <option value="1a">Edad</option>
-        </select>
-
-        <select id="" name="Categoria">
-          <option value="1a">Categoria</option>
-        </select>
-
-        <select id="" name="Mas-juegos">
-          <option value="1a">Más juegos</option>
-        </select>
-
-        <select id="" name="Guardados">
-          <option value="gurdados">Guardados</option>
-        </select>
-      </div>
-
-      <!----------------Cards -->
+      <!--------------------------- Cards -->
       <div class="cards">
-
         <!-- first group -->
         <div class="sugerencias">
-          <!-- <h1>Sugerencias</h1> -->
-          <!-- <p @click.prevent="leftModal">left</p>
-          <p @click.prevent="rightModal">Rigth</p> -->
           <div id="$gridCards" class="gridCards">
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 100"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 200"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 300"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 400"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 500"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 600"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 700"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 800"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 900"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1000"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1100"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1200"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1300"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1400"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1500"/>
-            <Card @click.prevent="getDataGame(id)" :delay="1100 + 1600"/>
+            <div class="forCard" v-for="game in games" :key="game.id">
+              <Card @click.prevent="getDataGame(game.id)" :game="game" :delay="games.indexOf(game) * 100 + 1100"/>
+            </div>
           </div>
         </div>
 
@@ -106,7 +69,7 @@
 
     <!------------------- modal -->
     <transition name="fade">
-      <ModalGames v-show="modal" />
+      <ModalGames v-if="modal" />
     </transition>
   </div>
 </template>
@@ -114,8 +77,7 @@
 <script>
 import NavBarDash from "../Components/NavBarDash.vue";
 import ModalGames from "@/Components/ModalGames.vue";
-import { mapActions, mapState } from "vuex";
-
+import { mapActions, mapMutations, mapState } from "vuex";
 import Card from "../Components/Card";
 
 export default {
@@ -126,16 +88,25 @@ export default {
       id: 1,
     },
   },
-  data() {
-    return {
-      modalGames: true,
-    };
+  beforeCreate () {
+    this.$store.dispatch('game/getGames');
+    this.$store.dispatch('game/getGameHero');
   },
   computed: {
-    ...mapState("game", ["game", "modal"]),
+    ...mapState("game", ["game",
+      "modal",
+      "games",
+      "gameHero"
+    ]),
   },
   methods: {
-    ...mapActions("game", ["getDataGame"]),
+    ...mapMutations('game', ["setArrayWithSaveGames"]),
+    ...mapActions("game", [
+      "getDataGame",
+      "getGames",
+      "getSaveGame",
+      "customizeGames"
+    ]),
     leftModal() {
       window.$gridCards.scrollLeft += 820;
       console.log(window.$gridCards.scrollLeft);

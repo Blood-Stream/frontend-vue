@@ -11,7 +11,10 @@
   animation-fill-mode: forwards;
 
   h3 {
-    margin: 16px;
+    margin: 12px;
+    height: 44px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   figure {

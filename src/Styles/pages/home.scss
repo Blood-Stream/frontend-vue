@@ -25,15 +25,22 @@
     box-sizing: border-box;
     grid-row: 1 / span 1;
     grid-column: 1 / -1;
-    grid-template: 1fr 1fr / 70% 30%;
+    grid-template: repeat(2, 180px) / 70% 30%;
     gap: 8px;
   }
 
   .filters {
-    display: flex;
-    flex-direction: column;
-    grid-column: 1 / span 1;
-    grid-row: 2 / span 1;
+    li:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      // font-size: 1.2rem;
+      transform: scale(1.1);
+      transition: 200ms;
+    }
+    //   display: flex;
+    //   flex-direction: column;
+    //   grid-column: 1 / span 1;
+    //   grid-row: 2 / span 1;
   }
 
   .cards {

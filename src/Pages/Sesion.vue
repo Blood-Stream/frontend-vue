@@ -15,7 +15,7 @@
         <div class="circleBackground"></div>
 
         <!-- redes sociales -->
-        <div class="signupRrss">
+        <!-- <div class="signupRrss">
           <button class="btn--second-small">
             <a href="https://ssr-server.herokuapp.com/auth/facebook">
               <font-awesome-icon :icon="fb" />
@@ -34,13 +34,15 @@
               <span>GitHub</span>
             </a>
           </button>
-          <button class="btn--second-small">
+          <div class="btn--second-small">
             <a href="http://ssr-server.herokuapp.com/auth/google-oauth" target="_parent">
+            <div class="gmm" @click.prevent="loginGmail">
               <font-awesome-icon :icon="google" />
               <span>Gmail</span>
+            </div>
             </a>
-          </button>
-        </div>
+          </div>
+        </div> -->
 
         <!-- form  -->
         <form-sesion :typeform="typeform" />
@@ -82,6 +84,9 @@ export default {
       git: faGithub,
       google: faGoogle,
     };
+  },
+  created () {
+    sessionStorage.getItem('User');
   },
   components: {
     FormSesion,

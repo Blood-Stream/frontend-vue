@@ -15,7 +15,7 @@
         <!----------- Nickname -->
         <div class="nickname">
           <h2>
-            {{ userData.Nickname }}
+            {{ nickname }}
           </h2>
           <p>
             {{ flag }}
@@ -26,17 +26,17 @@
         <form @submit.prevent="editProfile" class="form">
           <input
             type="date"
-            v-model="newData.Birthday"
+            v-model="birthday"
             autocomplete="on"
           >
           <input
             type="mail"
-            v-model="newData.email"
+            v-model="email"
             autocomplete="on"
           >
           <input
             type="phone"
-            v-model="newData.phone"
+            v-model="phone"
             autocomplete="on"
           >
           <button class="btn--main-big" type="submit" >
@@ -45,29 +45,66 @@
         </form>
       </div>
     </div>
+      <!-- load -->
+    <Load v-show="loadShow"/>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import NavBarDash from "@/Components/NavBarDash.vue";
+import Load from '../Components/Load'
 
 export default {
-
-  data() {
-    return {
-      newData: {
-        email: this.$store.state.user.userData.contactId.email,
-        phone: this.$store.state.user.userData.contactId.phone,
-        birthday: this.$store.state.user.userData.Birthday,
-      },
-    }
+  beforeCreate () {
+    this.$store.dispatch('user/getUser')
   },
 
   computed: {
     ...mapState("user", [
       'userData'
     ]),
+    ...mapState("load", [
+      'loadShow'
+    ]),
+    nickname: {
+      get() {
+        return this.$store.state.user.userData.Nickname
+      },
+      set(value) {
+        this.$store.commit('user/setNewNick', value)
+      },
+    },
+    birthday: {
+      get() {
+        const date = this.$store.state.user.userData.Birthday
+        const formatDate = Date.parse(date)
+        const DATE = new Date(formatDate)
+        const year = DATE.getFullYear()
+        const month = DATE.getDay()
+        const day = DATE.getDate()
+        return year + '-' + month + '-' + day
+      },
+      set(value) {
+        this.$store.commit('user/setNewBirthday', value)
+      },
+    },
+    email: {
+      get() {
+        return this.$store.state.user.userData.contactId.email
+      },
+      set(value) {
+        this.$store.commit('user/setNewEmail', value)
+      },
+    },
+    phone: {
+      get() {
+        return this.$store.state.user.userData.contactId.phone
+      },
+      set(value) {
+        this.$store.commit('user/setNewPhone', value)
+      },
+    },
     flag() {
       return this.userData.Country
     }
@@ -75,12 +112,13 @@ export default {
   },
 
   components: {
-    NavBarDash
+    NavBarDash,
+    Load
   },
 
   methods: {
+
     editProfile () {
-      this.$store.commit('user/setNewData', this.newData)
       this.$store.dispatch('user/editProfile')
     }
 

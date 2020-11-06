@@ -2,25 +2,47 @@
   <div id="Card" ref="Card">
     <!--------------- image -->
     <figure>
-      <img src="@/Assets/images/games/altos.png" alt="" />
+      <img :src="game.Icon_Url ? game.Icon_Url : 'https://gaminglaptopunder.com/wp-content/uploads/2019/12/dc486960-701e-421b-b145-70d04f3b85be.jpg' " alt="game" />
     </figure>
     <!--------------- title -->
-    <h3>{{ nameGame }}</h3>
+    <h3>{{ game.Name || 'Cargando juego'}}</h3>
     <!--------------- interaction -->
     <div class="interaction">
       <!------- stars -->
       <div class="stars">
-        <font-awesome-icon :icon="star" color="var(--yellow)" />
-        <font-awesome-icon :icon="star" color="var(--yellow)" />
-        <font-awesome-icon :icon="star" color="var(--yellow)" />
-        <font-awesome-icon :icon="star" color="var(--yellow)" />
-        <font-awesome-icon :icon="starHalf" color="var(--yellow)" />
-      </div>
-      <!------- like -->
 
+        <font-awesome-icon
+            :icon="star"
+            :color=" 1 <= game.Rating ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(1)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 2 <= game.Rating ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(2)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 3 <= game.Rating ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(3)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 4 <= game.Rating ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(4)"
+          />
+          <font-awesome-icon
+            :icon="star"
+            :color=" 5 <= game.Rating ? 'var(--yellow)' : 'var(--white)'"
+            @click.prevent="setRating(5)"
+          />
+      </div>
+
+      <!------- like -->
       <font-awesome-icon :icon="Heart" color="var(--red)" />
+
       <!------- game -->
-      <font-awesome-icon :icon="game" color="var(--white)" />
+      <font-awesome-icon :icon="gameIcon" color="var(--white)" />
     </div>
   </div>
 </template>
@@ -35,9 +57,12 @@ import {
 
 export default {
   props: {
-    nameGame: {
-      type: String,
-      default: "XCom 2",
+    game: {
+      type: Object,
+      default: () => ({
+        id: 1,
+        Name: '',
+      }),
     },
     delay: {
       type: Number,
@@ -49,7 +74,8 @@ export default {
       star: faStar,
       starHalf: faStarHalfAlt,
       Heart: faHeart,
-      game: faGamepad,
+      gameIcon: faGamepad,
+      // image: this.$props.game.Icon_Url || '../Assets/images/games/altos.png'
     };
   },
   mounted () {

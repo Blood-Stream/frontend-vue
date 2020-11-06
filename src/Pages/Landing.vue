@@ -16,8 +16,8 @@
         </h1>
 
         <!-- button singup -->
-        <router-link to="/sesion/signup">
-          <button class="btn--main-big">Signup</button>
+        <router-link to="/">
+          <button class="btn--main-big">Descubrir Juegos</button>
         </router-link>
 
         <!-- social media -->

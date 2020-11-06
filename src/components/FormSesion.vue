@@ -26,11 +26,14 @@
       <button class="btn--main-big">
         {{ typeOfForm }}
       </button>
+      <p>{{errorLogin}}</p>
     </form>
+
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   props: {
     typeform: {
@@ -50,6 +53,9 @@ export default {
   },
 
   computed: {
+    ...mapState('user', [
+      "errorLogin"
+    ]),
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
     },

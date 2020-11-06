@@ -2,9 +2,31 @@
   <!------------------ menu burguer -->
   <div class="menuWrap" v-show="wrapMenu">
     <ul>
-      <router-link to="/statistic">
-        Statistics
-      </router-link>
+      <li v-show="sesionOff">
+        <router-link  to="/sesion/signup">
+          Sign up
+        </router-link>
+      </li>
+      <li v-show="sesionOff">
+        <router-link to="/sesion/login">
+          Login
+        </router-link>
+      </li>
+      <li v-show="sesionOn">
+        <router-link to="/">
+          Home
+        </router-link>
+      </li>
+      <li v-show="sesionOn">
+        <router-link to="/sesion/login">
+          Logout
+        </router-link>
+      </li>
+      <li v-show="sesionOn">
+        <router-link to="/statistic">
+          Statistics
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -13,7 +35,7 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState("statistics", ["wrapMenu"]),
+    ...mapState("statistics", ["wrapMenu", "sesionOff", "sesionOn"]),
   },
 
   unmounted () {
