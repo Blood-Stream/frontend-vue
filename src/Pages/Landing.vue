@@ -11,13 +11,13 @@
       <!-- abstract -->
       <div class="text">
         <h1>
-          Descubre los Juegos <br />quecorren por tus<br />
-          <span>venas</span>
+          Discover the games <br>running through your <br />
+          <span>Veins</span>
         </h1>
 
         <!-- button singup -->
-        <router-link to="/">
-          <button class="btn--main-big">Descubrir Juegos</button>
+        <router-link to="/sesion/signup">
+          <button class="btn--main-big">Discover games</button>
         </router-link>
 
         <!-- social media -->

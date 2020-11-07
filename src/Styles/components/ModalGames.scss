@@ -53,6 +53,8 @@
   }
   .info {
     width: 45%;
+    overflow: scroll;
+
     h1 {
       font-family: var(--main-font);
       font-size: 3rem;
@@ -90,9 +92,25 @@
     .language {
       display: flex;
       margin-bottom: 8px;
+      margin-bottom: 8px;
       p {
         margin-right: 16px;
       }
+    }
+
+    .genre {
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .comments {
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .comment {
+      margin-top: 16px;
+      margin-bottom: 40px;
     }
   }
 }

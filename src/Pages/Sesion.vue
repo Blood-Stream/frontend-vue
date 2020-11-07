@@ -54,13 +54,12 @@
     </div>
 
     <!-- load -->
-    <Load v-show="loadShow"/>
+    <!-- <Load v-if="loadShow"/> -->
   </div>
 </template>
 
 <script>
 import FormSesion from "@/Components/FormSesion.vue";
-import Load from '@/Assets/animations/lotie.vue'
 import { mapState } from 'vuex'
 
 import {
@@ -86,11 +85,11 @@ export default {
     };
   },
   created () {
-    sessionStorage.getItem('User');
+    sessionStorage.setItem('User', '');
+    sessionStorage.setItem('UserSesion', '');
   },
   components: {
     FormSesion,
-    Load
   },
   computed: {
     ...mapState('load', [
@@ -99,6 +98,9 @@ export default {
     typeOfForm() {
       return this.typeform.charAt(0).toUpperCase() + this.typeform.slice(1);
     },
+  },
+  unmounted () {
+    this.$store.commit('load/setFalseLoad');
   },
 };
 </script>

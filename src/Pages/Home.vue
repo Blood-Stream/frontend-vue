@@ -59,7 +59,7 @@
         <div class="sugerencias">
           <div id="$gridCards" class="gridCards">
             <div class="forCard" v-for="game in games" :key="game.id">
-              <Card @click.prevent="getDataGame(game.id)" :game="game" :delay="games.indexOf(game) * 100 + 1100"/>
+              <Card @click.prevent="getDataGame(game.Name)" :game="game" :delay="games.indexOf(game) * 100 + 100"/>
             </div>
           </div>
         </div>
@@ -71,6 +71,8 @@
     <transition name="fade">
       <ModalGames v-if="modal" />
     </transition>
+
+      <!-- load -->
   </div>
 </template>
 
@@ -91,6 +93,11 @@ export default {
   beforeCreate () {
     this.$store.dispatch('game/getGames');
     this.$store.dispatch('game/getGameHero');
+    const sesion = Boolean(sessionStorage.getItem('User'))
+
+    if (sesion) {
+      this.$store.commit('statistics/setModal')
+    }
   },
   computed: {
     ...mapState("game", ["game",
@@ -98,6 +105,9 @@ export default {
       "games",
       "gameHero"
     ]),
+    ...mapState('load', [
+      "loadShow"
+    ])
   },
   methods: {
     ...mapMutations('game', ["setArrayWithSaveGames"]),

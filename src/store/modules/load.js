@@ -4,8 +4,11 @@ export default {
     loadShow: false
   },
   mutations: {
-    setLoad(state) {
-      state.loadShow = !state.loadShow
+    setTrueLoad(state) {
+      state.loadShow = true
+    },
+    setFalseLoad(state) {
+      state.loadShow = false
     }
   }
 }

@@ -28,16 +28,19 @@
             type="date"
             v-model="birthday"
             autocomplete="on"
+            placeholder="Birthday"
           >
           <input
             type="mail"
             v-model="email"
             autocomplete="on"
+            placeholder="Mail"
           >
           <input
             type="phone"
             v-model="phone"
             autocomplete="on"
+            placeholder="Phone"
           >
           <button class="btn--main-big" type="submit" >
             Guardar
@@ -46,14 +49,13 @@
       </div>
     </div>
       <!-- load -->
-    <Load v-show="loadShow"/>
+    <!-- <Load v-if="loadShow"/> -->
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import NavBarDash from "@/Components/NavBarDash.vue";
-import Load from '../Components/Load'
 
 export default {
   beforeCreate () {
@@ -113,7 +115,6 @@ export default {
 
   components: {
     NavBarDash,
-    Load
   },
 
   methods: {

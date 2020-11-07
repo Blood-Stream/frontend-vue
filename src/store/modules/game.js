@@ -33,7 +33,8 @@ export default {
   mutations: {
     // ---------------------------------------- set data games
     setDataGame(state, dataGame) {
-      state.game = dataGame
+      state.gameData = dataGame
+      // state.game = dataGame
     },
 
     // ---------------------------------------- modal
@@ -79,14 +80,38 @@ export default {
 
   actions: {
     // ----------------------------------------- get game id
-    getDataGame({ commit }, id) {
-      const res = {
-        id: 1222,
-        name: 'AndresotroGame'
-      }
-      commit('setIdGame', id)
-      commit('setDataGame', res)
-      commit('setModal')
+    async getDataGame({ commit, rootState }, name) {
+      const url = `${process.env.VUE_APP_URL_SERVICE_DATA}/game/get/${name}`
+      console.log(url);
+      const token = sessionStorage.getItem('UserSesion')
+      const headers = new Headers()
+      headers.set('Authorization', 'Bearer ' + token)
+      headers.set('Content-Type', 'application/json')
+
+      const myInit = {
+        method: 'GET',
+        headers,
+        mode: "cors",
+      };
+
+      await fetch(url, myInit)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            throw new Error(response.statusText)
+          }
+        })
+        .then(data => {
+          console.log(data);
+          commit('setDataGame', data.body)
+          commit('setModal')
+        })
+        .catch(error => {
+          console.log(error, '<--- catch')
+        })
+
+      // commit('setIdGame', id)
     },
 
     // ----------------------------------------- save games
@@ -185,8 +210,9 @@ export default {
     },
 
     // ----------------------------------------- custom games
-    async customizeGames({ commit, state }) {
+    async customizeGames({ commit, state, rootState }) {
       const groupGame = state.savedGames[0].Name
+      rootState.load.loadShow = true
 
       const url = `${process.env.VUE_APP_URL_SERVICE_DATA}/game/group/${groupGame}&1`
       const token = sessionStorage.getItem('UserSesion')
@@ -204,13 +230,16 @@ export default {
         .then(response => response.json())
         .then(data => {
           commit('setGames', data.body)
+          rootState.load.loadShow = false
         })
-        .catch(error => console.log(error.message))
+        .catch(error => {
+          rootState.load.loadShow = false
+          console.log(error.message)
+        })
     },
 
     // ----------------------------------------- get games hero
-    async getGameHero({ commit, state }) {
-      // get user games
+    async getGameHero({ commit, state, rootState }) {
       const user = sessionStorage.getItem('User')
       const url = `${process.env.VUE_APP_URL_SERVICE_DATA}/game-collection/collections/${user}&0`
       const token = sessionStorage.getItem('UserSesion')
@@ -250,6 +279,7 @@ export default {
               for (let index = 0; index < 3; index++) {
                 commit('setHeroGame', dataHero.body[index])
               }
+              rootState.load.loadShow = false
             })
             .catch(error => console.log(error.message))
         })
@@ -260,7 +290,7 @@ export default {
     },
 
     // ----------------------------------------- get popular games
-    async getGames({ commit, state }) {
+    async getGames({ commit, state, rootState }) {
       const url = `${process.env.VUE_APP_URL_SERVICE_DATA}/game-rating/get/${state.pageGame}`
       const token = sessionStorage.getItem('UserSesion')
       const headers = new Headers()
@@ -272,16 +302,25 @@ export default {
         mode: "cors",
       };
 
-      try {
-        await fetch(url, myInit)
-          .then(responser => responser.json())
-          .then(data => {
-            console.log(data.body);
-            commit('setGames', data.body)
-          })
-      } catch (error) {
-        console.error(error);
-      }
+      rootState.load.loadShow = true
+
+      await fetch(url, myInit)
+        .then(response => {
+          rootState.load.loadShow = false
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            rootState.load.loadShow = false
+            throw new Error(response.statusText)
+          }
+        })
+        .then(data => {
+          console.log(data.body);
+          commit('setGames', data.body)
+        })
+        .catch(error => {
+          console.error(error);
+        })
     }
 
   },

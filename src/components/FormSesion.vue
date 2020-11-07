@@ -64,7 +64,6 @@ export default {
   methods: {
     sendData() {
       if (this.typeform === "login") {
-        this.$store.commit('load/setLoad')
         this.$store.dispatch("user/login", this.userData);
       } else if (this.typeform === "signup") {
         console.log(this.typeform);

@@ -85,15 +85,16 @@ export default {
           if (response.status === 200) {
             return response.json()
           } else {
+            rootState.load.loadShow = false
             throw new Error(response.statusText)
           }
         })
         .then(data => {
+          rootState.load.loadShow = false
           commit('dataUser', data.body)
         })
         .catch(error => {
           alert(error)
-          rootState.load.loadShow = false
         })
     },
 
@@ -103,6 +104,7 @@ export default {
       rootState,
     }, userdata) {
       const url = `${process.env.VUE_APP_URL_SERVICE}/auth/sign-in`
+      rootState.load.loadShow = true
 
       const headers = new Headers()
       headers.set('Authorization', 'Basic ' + btoa(`${userdata.nickname}:${userdata.password}`))
@@ -117,23 +119,24 @@ export default {
       await fetch(url, myInit)
         .then((response) => {
           console.log(response)
+          rootState.load.loadShow = false
           if (response.status === 200) {
             return response.json()
           } else {
-            throw new Error(response.statusText)
+            rootState.load.loadShow = false
+            throw new Error('Error en contraseña o clave')
           }
         })
         .then(async (data) => {
           sessionStorage.setItem('UserSesion', data.token)
           sessionStorage.setItem('User', data.Nickname)
           commit('setJwt', data.token)
-          rootState.statistics.sesionOn = !rootState.statistics.sesionOn
-          rootState.statistics.sesionOff = !rootState.statistics.sesionOff
           rootState.load.loadShow = false
-          router.push({ path: '/' })
+          rootState.statistics.sesionOn = false
+          rootState.statistics.sesionOff = true
+          setTimeout(router.push({ path: '/' }), 1000)
         })
         .catch(error => {
-          rootState.load.loadShow = false
           commit('setErrorLogin', error)
         })
     },
@@ -143,6 +146,7 @@ export default {
       commit,
       rootState
     }, userdata) {
+      rootState.load.loadShow = true
       const url = `${process.env.VUE_APP_URL_SERVICE}/auth/sign-up`
       const data = {
         nickname: userdata.nickname,
@@ -174,6 +178,7 @@ export default {
             console.log(data);
             commit('dataUser', data.body)
             router.push({ path: '/sesion/login' })
+            rootState.load.loadShow = false
           });
       } catch (error) {
         alert(error)

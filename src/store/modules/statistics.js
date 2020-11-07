@@ -15,6 +15,10 @@ export default {
     },
     hideWrapMenu (state) {
       state.wrapMenu = false
+    },
+    setModal (state) {
+      state.sesionOn = true
+      state.sesionOff = false
     }
   }
 }
